@@ -1,0 +1,90 @@
+body {
+  background: black;
+  color: #00ff66;
+  font-family: "Courier New", monospace;
+  margin: 0;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+  border-bottom: 2px solid #00ff66;
+}
+
+.title {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.led-panel {
+  display: flex;
+  gap: 8px;
+}
+
+.led {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: #003300;
+  animation: blink 1s infinite alternate;
+}
+
+.led:nth-child(2){animation-delay:.2s;}
+.led:nth-child(3){animation-delay:.4s;}
+.led:nth-child(4){animation-delay:.6s;}
+.led:nth-child(5){animation-delay:.8s;}
+
+@keyframes blink {
+  from { background:#003300; }
+  to   { background:#00ff66; box-shadow:0 0 8px #00ff66; }
+}
+
+nav {
+  padding: 8px;
+  border-bottom: 1px solid #00ff66;
+}
+
+button {
+  background: black;
+  color: #00ff66;
+  border: 1px solid #00ff66;
+  margin-right: 6px;
+  padding: 6px 10px;
+  cursor: pointer;
+}
+
+button:hover {
+  background: #002200;
+}
+
+main {
+  padding: 12px;
+  min-height: 520px;
+}
+
+.tab { display: none; }
+.tab.active { display: block; }
+
+pre {
+  white-space: pre-wrap;
+  font-size: 16px;
+}
+
+canvas {
+  margin-top: 20px;
+  background: #001100;
+  border: 1px solid #00ff66;
+}
+
+.mvs-image {
+  text-align: center;
+  margin: 20px 0;
+}
+
+footer {
+  text-align: center;
+  border-top: 1px solid #00ff66;
+  padding: 10px;
+  font-size: 14px;
+}

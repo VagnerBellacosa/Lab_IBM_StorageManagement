@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+
+<head>
+<meta charset="UTF-8">
+
+<title>z/OS Storage Simulator | OMEGAMON Memory Monitor Demo | IBM Mainframe z17</title>
+
+<meta name="description" content="Simulador interativo de memória do z/OS inspirado no OMEGAMON. Demonstra uso de Real Storage, Paging, CSA, ECSA, SQA e comportamento sob carga no IBM Mainframe.">
+
+<meta name="keywords" content="z/OS, mainframe, OMEGAMON, RMF, storage z/OS, IBM Z, memory management, paging, CSA ECSA SQA, mainframe simulator">
+
+<meta name="author" content="Bellacosa Mainframe">
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<meta property="article:published_time" content="2026-03-11">
+<meta property="article:section" content="Mainframe Computing">
+
+<link rel="canonical" href="https://bellacosamainframe.com/zos-storage-simulator">
+
+<meta name="robots" content="index, follow">
+
+<!-- Open Graph -->
+<meta property="og:title" content="z/OS Storage Simulator — OMEGAMON Style">
+<meta property="og:description" content="Simulação realista do comportamento de memória do IBM z/OS ao longo de 7 dias.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://bellacosamainframe.com/zos-storage-simulator">
+<meta property="og:image" content="https://bellacosamainframe.com/images/zos-simulator-preview.png">
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="z/OS Storage Simulator">
+<meta name="twitter:description" content="Simulador de storage do IBM Mainframe z/OS inspirado no OMEGAMON.">
+<meta name="twitter:image" content="https://bellacosamainframe.com/images/zos-simulator-preview.png">
+
+<link rel="stylesheet" href="styles.css">
+</head>
+
+</head>
+
+<body>
+
+<link rel="preload" href="3270.woff2" as="font" type="font/woff2" crossorigin>
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@type": "SoftwareApplication",
+ "name": "z/OS Storage Simulator",
+ "operatingSystem": "Web",
+ "applicationCategory": "EducationalApplication",
+ "description": "Simulador interativo do gerenciamento de memória do IBM z/OS baseado no OMEGAMON.",
+ "creator": {
+   "@type": "Organization",
+   "name": "Bellacosa Mainframe"
+ }
+}
+</script>
+
+
+<header>
+  <div class="title">z/OS STORAGE OPS CONSOLE — SYS1</div>
+
+  <div class="led-panel">
+    <div class="led"></div>
+    <div class="led"></div>
+    <div class="led"></div>
+    <div class="led"></div>
+    <div class="led"></div>
+  </div>
+</header>
+
+<nav>
+  <button onclick="showTab('summary')">SUMMARY</button>
+  <button onclick="showTab('paging')">PAGING</button>
+  <button onclick="showTab('common')">COMMON</button>
+  <button onclick="showTab('users')">TOP USERS</button>
+  <button onclick="showTab('console')">CONSOLE</button>
+</nav>
+
+<main>
+
+<h1>z/OS Storage Simulator — OMEGAMON Style</h1>
+<h2>IBM Mainframe Memory Monitoring Demo</h2>
+<br>
+<section class="seo-text">
+<p>
+Este simulador educacional demonstra o comportamento do gerenciamento
+de memória do sistema operacional IBM z/OS, incluindo Real Storage,
+Auxiliary Storage, paging e áreas comuns como CSA e ECSA.
+</p>
+</section>
+<br>
+
+<div id="summary" class="tab active">
+<pre id="summaryText"></pre>
+<canvas id="realChart"></canvas>
+</div>
+
+<div id="paging" class="tab">
+<pre id="pagingText"></pre>
+<canvas id="pagingChart"></canvas>
+</div>
+
+<div id="common" class="tab">
+<pre id="commonText"></pre>
+</div>
+
+<div id="users" class="tab">
+<pre id="usersText"></pre>
+</div>
+
+<div id="console" class="tab">
+<pre id="consoleText"></pre>
+
+
+<img src="assets/img/bellacosa1974.png"
+     alt="IBM MVS operator console with 3270 terminal"
+     width="480"
+     height="50">
+</div>
+
+<br>
+<br>
+
+<section class="about-author">
+<h2>Sobre o Bellacosa Mainframe</h2>
+<p>
+Projeto educacional especializado em IBM Mainframe, z/OS,
+COBOL, CICS, DB2 e arquitetura corporativa.
+</p>
+<a href="https://www.linkedin.com/in/bellacosa" target="_blank">
+LinkedIn Bellacosa Mainframe
+</a>
+</section>
+
+</main>
+
+<section class="mvs-image">
+<img src="https://upload.wikimedia.org/wikipedia/commons/6/63/IBM_3270_terminal.jpg"
+     width="480" height="50">
+</section>
+
+<footer>
+LinkedIn Bellacosa Mainframe • LinkedIn COBOL Live •  
+Newsletter "Um Café no Bellacosa Mainframe" • Newsletter COBOL is Live
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="assets/js/simulator.js" defer></script>
+
+</body>
+</html>
