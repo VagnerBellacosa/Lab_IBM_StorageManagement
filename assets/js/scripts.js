@@ -157,22 +157,30 @@ const pagingChart = new Chart(
 );
 
 
-
 const btn = document.getElementById("pf1HelpButton");
 const modal = document.getElementById("pf1Modal");
 const closeBtn = document.getElementById("pf1Close");
 
+/* Clique */
+
 btn.onclick = () => modal.style.display = "block";
 closeBtn.onclick = () => modal.style.display = "none";
+
+/* Clique fora fecha */
 
 window.onclick = e => {
   if (e.target === modal) modal.style.display = "none";
 };
 
-/* Tecla PF1 simulada = F1 do teclado */
+/* Tecla F1 do Windows */
+
 document.addEventListener("keydown", e => {
+
   if (e.key === "F1") {
-    e.preventDefault();
+
+    e.preventDefault();      // bloqueia ajuda do navegador
     modal.style.display = "block";
+
   }
+
 });
