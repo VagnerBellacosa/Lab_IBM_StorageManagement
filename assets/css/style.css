@@ -332,48 +332,34 @@ footer {
 
 
 /* CABEÇALHO */
-
-.pf1-header {
-  background: #001100;
-  padding: 8px;
-  font-family: "Courier New", monospace;
-  font-weight: bold;
+.topbar {
   display: flex;
   justify-content: space-between;
-  border-bottom: 1px solid #00ff66;
+  align-items: center;
+  border-bottom: 2px solid #00ff66;
+  padding: 6px 12px;
 }
 
-#pf1Close {
-  background: black;
-  border: 1px solid #00ff66;
+/* Container das PF keys */
+
+.pfkeys {
+  display: flex;
+  align-items: center;
+}
+
+/* Botão PF1 estilo ISPF */
+
+#pf1HelpButton {
+  background: #001100;
+  border: 2px solid #00ff66;
   color: #00ff66;
+  padding: 4px 12px;
+  font-family: "Courier New", monospace;
+  font-weight: bold;
   cursor: pointer;
-  padding: 2px 8px;
+  box-shadow: 0 0 10px #00ff66;
 }
 
-#pf1Close:hover {
-  background: #002200;
-}
-
-
-/* IFRAME */
-
-.pf1-window iframe {
-  flex: 1;
-  border: none;
-}
-
-
-/* BOTÃO EXTERNO */
-
-.pf1-external {
-  text-align: center;
-  padding: 8px;
-  border-top: 1px solid #00ff66;
-  color: #00ff66;
-  text-decoration: none;
-}
-
-.pf1-external:hover {
+#pf1HelpButton:hover {
   background: #002200;
 }
