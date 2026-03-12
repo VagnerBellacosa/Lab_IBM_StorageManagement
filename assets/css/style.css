@@ -281,4 +281,99 @@ footer {
   .video-grid { grid-template-columns: 1fr; }
 }
 
+/* BOTÃO PF1 */
 
+#pf1HelpButton {
+  position: fixed;
+  top: 12px;
+  right: 12px;
+  background: #001100;
+  border: 2px solid #00ff66;
+  color: #00ff66;
+  padding: 8px 14px;
+  font-family: "Courier New", monospace;
+  font-weight: bold;
+  cursor: pointer;
+  z-index: 9999;
+  box-shadow: 0 0 10px #00ff66;
+}
+
+#pf1HelpButton:hover {
+  background: #002200;
+}
+
+
+/* MODAL OVERLAY */
+
+.pf1-modal {
+  display: none;
+  position: fixed;
+  z-index: 9998;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.85);
+}
+
+
+/* JANELA */
+
+.pf1-window {
+  width: 90%;
+  height: 88%;
+  margin: 3% auto;
+  background: black;
+  border: 2px solid #00ff66;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 0 20px #00ff66;
+}
+
+
+/* CABEÇALHO */
+
+.pf1-header {
+  background: #001100;
+  padding: 8px;
+  font-family: "Courier New", monospace;
+  font-weight: bold;
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid #00ff66;
+}
+
+#pf1Close {
+  background: black;
+  border: 1px solid #00ff66;
+  color: #00ff66;
+  cursor: pointer;
+  padding: 2px 8px;
+}
+
+#pf1Close:hover {
+  background: #002200;
+}
+
+
+/* IFRAME */
+
+.pf1-window iframe {
+  flex: 1;
+  border: none;
+}
+
+
+/* BOTÃO EXTERNO */
+
+.pf1-external {
+  text-align: center;
+  padding: 8px;
+  border-top: 1px solid #00ff66;
+  color: #00ff66;
+  text-decoration: none;
+}
+
+.pf1-external:hover {
+  background: #002200;
+}
