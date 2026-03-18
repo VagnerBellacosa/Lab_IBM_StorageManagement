@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>TSO/E LOGON — RACF Panel</title>
+
+<meta name="description" content="Simulador fiel do painel TSO/E LOGON com RACF em terminal IBM 3270.">
+<meta name="keywords" content="TSO, RACF, zOS, mainframe, 3270, IBM, logon">
+<meta name="robots" content="index, follow">
+
+<style>
+body{
+    margin:0;
+    background:#0a0a0a;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    height:100vh;
+    font-family:"Courier New", monospace;
+}
+
+/* TERMINAL */
+#screen{
+    background:#000;
+    color:#ffffff;
+    padding:18px;
+    box-shadow:0 0 35px #00ffff;
+    width:80ch;
+    height:24em;
+    line-height:1em;
+    white-space:pre;
+    position:relative;
+}
+
+/* CORES ESTILO 3270 */
+.cyan{ color:#00ffff; }
+.red{ color:#ff4040; }
+
+/* CURSOR */
+.cursor{
+    background:#00ffff;
+    color:#000;
+    animation:blink 1s steps(1) infinite;
+}
+@keyframes blink{
+    50%{background:transparent;color:#00ffff;}
+}
+
+/* POST-IT */
+#note{
+    position:absolute;
+    top:12px;
+    left:12px;
+    background:#efe08a;
+    color:#333;
+    padding:10px;
+    font-family:Arial;
+    font-size:13px;
+    transform:rotate(-5deg);
+    box-shadow:4px 4px 8px rgba(0,0,0,.7);
+}
+
+#note:before{
+    content:"";
+    position:absolute;
+    top:-8px;
+    left:35%;
+    width:40px;
+    height:12px;
+    background:rgba(255,255,255,.6);
+}
+
+/* TIMER */
+#timer{
+    position:absolute;
+    bottom:8px;
+    right:12px;
+    font-size:12px;
+    color:#00ffff;
+    opacity:.7;
+}
+</style>
+</head>
+
+<body>
+
+<div id="note">
+USER: SYSPROG<br>
+PASS: SYS2026
+</div>
+
+<div id="screen"></div>
+
+<script>
+const COLS=80;
+
+let user="";
+let pass="";
+let field="user";
+let message="";
+
+const screen=document.getElementById("screen");
+
+/* CONTADOR */
+let start=Date.now();
+setInterval(()=>{
+  const s=Math.floor((Date.now()-start)/1000);
+  document.getElementById("timer").textContent="Sessão: "+s+"s";
+},1000);
+
+/* DESENHAR */
+function draw(){
+
+let lines=[
+
+"------------------------------- TSO/E LOGON -------------------------------",
+"",
+" Enter LOGON parameters below:           RACF LOGON parameters:",
+"",
+" <span class='cyan'> Userid   ===></span> " + user.padEnd(8) +
+"                 <span class='cyan'>New Password ===></span>",
+"",
+" <span class='cyan'> Password ===></span> " + "*".repeat(pass.length).padEnd(8) +
+"                 <span class='cyan'>Group Ident ===></span>",
+"",
+" <span class='cyan'> Procedure ===></span> <span class='red'>DBPROC</span>",
+"",
+" <span class='cyan'> Acct Nmbr ===></span> FB",
+"",
+" <span class='cyan'> Size      ===></span> <span class='red'>32768</span>",
+"",
+" <span class='cyan'> Perform   ===></span>",
+"",
+" <span class='cyan'> Command   ===></span>",
+"",
+" Enter an 'S' before each option desired below:",
+"     -Nomail      -Nonotice      -Reconnect      -OIDcard",
+"",
+" PF1/PF13 ==> Help     PF3/PF15 ==> Logoff     PA1 ==> Attention",
+" PA2 ==> Reshow",
+"",
+" " + message,
+"",
+"",
+"",
+""
+];
+
+let out=lines.map(l=>l.padEnd(COLS)).join("\n");
+
+/* CURSOR */
+if(field==="user"){
+  out=out.replace(
+    user.padEnd(8),
+    user + "<span class='cursor'> </span>"
+  );
+}else{
+  out=out.replace(
+    "*".repeat(pass.length).padEnd(8),
+    "*".repeat(pass.length) + "<span class='cursor'> </span>"
+  );
+}
+
+screen.innerHTML = out + "<div id='timer'></div>";
+}
+
+draw();
+
+/* TECLADO */
+document.addEventListener("keydown", e=>{
+
+if(e.key==="Backspace"){
+  if(field==="user") user=user.slice(0,-1);
+  else pass=pass.slice(0,-1);
+}
+
+else if(e.key==="Tab"){
+  e.preventDefault();
+  field = field==="user" ? "pass" : "user";
+}
+
+else if(e.key==="Enter"){
+
+  if(field==="user"){
+    field="pass";
+  }else{
+
+    if(user==="SYSPROG" && pass==="SYS2026"){
+      message=" IKJ56700I LOGON IN PROGRESS";
+      draw();
+
+      setTimeout(()=>{
+        window.location.href="simulador.html";
+      },1200);
+
+      return;
+    }else{
+      message=" IKJ56701I INVALID USERID OR PASSWORD";
+      user="";
+      pass="";
+      field="user";
+    }
+  }
+}
+
+else if(e.key.length===1){
+  if(field==="user") user+=e.key.toUpperCase();
+  else pass+=e.key.toUpperCase();
+}
+
+draw();
+
+});
+</script>
+
+</body>
+</html>
